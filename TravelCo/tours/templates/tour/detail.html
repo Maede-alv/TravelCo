@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ tour.title }}{% endblock %}
+
+{% block content %}
+    <div class="tour-detail">
+        <div class="tour-image-detail">
+            {% if tour.image %}
+                <img src="{{ tour.image.url }}" alt="Tour Image">
+            {% else %}
+                <img src="{% static 'image/no_image.png' %}" alt="Placeholder Image">
+            {% endif %}
+        </div>
+        <div class="tour-info">
+            <h2 class="tour-title-detail">{{ tour.title }}</h2>
+            <p class="tour-description">{{ tour.description }}</p>
+            <p class="tour-duration">Duration: {{ tour.duration }} day{{ tour.duration|pluralize }}</p>
+            <p class="tour-dates">Dates: {{ tour.start_date|date:"F j, Y" }} - {{ tour.end_date|date:"F j, Y" }}</p>
+            <p class="tour-price">Price: {{ tour.price }}</p>
+            <p class="tour-capacity">Capacity: {{ tour.max_capacity }}</p>
+        </div>
+        <div class="tour-form">
+            <form method="post">
+                {% csrf_token %}
+                <div class="tour-schedule">
+                    <label class="tour-schedule-label" for="id_tour_schedule">
+                        Tour Schedule
+                    </label>
+                    {{ form.tour_schedule }}
+                </div>
+                <div class="tour-num">
+                    <label class="tour-num-label" for="id_adults">
+                        Number of Adults
+                    </label>
+                    {{ form.adults }}
+                </div>
+                <div class="tour-num">
+                    <label class="tour-num-label" for="id_children">
+                        Number of Children
+                    </label>
+                    {{ form.children }}
+                </div>
+                <div class="tour-num">
+                    <label class="tour-num-label" for="id_babies">
+                        Number of Babies
+                    </label>
+                    {{ form.babies }}
+                </div>
+                <div class="tour-submit">
+                    <button type="submit" class="tour-submit-but">Book Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

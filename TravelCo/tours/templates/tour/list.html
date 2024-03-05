@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Tours{% endblock %}
+{% block content %}
+<div class="tour-list">
+    {% for tour in tours %}
+        <div class="tour-card">
+            <a href="{% url 'tour:detail' tour.id %}">
+                <div class="tour-image">
+                    {% if tour.image %}
+                        <img src="{{ tour.image.url }}" alt="Tour Image">
+                    {% else %}
+                        <img src="{% static 'image/no_image.png' %}" alt="Placeholder Image">
+                    {% endif %}
+                </div>
+                <div class="tour-details">
+                    <h2 class="tour-title">{{ tour.title }}</h2>
+                    <p class="tour-description">{{ tour.description }}</p>
+                    <p class="tour-duration">Duration: {{ tour.duration }} day{{ tour.duration|pluralize }}</p>
+                    <p class="tour-dates">Dates: {{ tour.start_date|date:"F j, Y" }} - {{ tour.end_date|date:"F j, Y" }}</p>
+                    <p class="tour-price">Price: {{ tour.price }}</p>
+                    <p class="tour-availability"> 
+                        {% if tour.available %}
+                            <p class="tour-true">Available</p>
+                        {% else %}
+                            <p class="tour-false">Not Available</p>
+                        {% endif %}
+                    </p>
+                    <p class="tour-capacity">Capacity: {{ tour.max_capacity }}</p>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
