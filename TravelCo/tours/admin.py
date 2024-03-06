@@ -14,12 +14,12 @@ class TourAdmin(admin.ModelAdmin):
         "duration",
         "price",
         "available",
-        "max_capacity",
+        "capacity",
     )
     list_filter = (
         "duration",
         "price",
-        "max_capacity",
+        "capacity",
     )
     search_fields = ("title",)
     date_hierarchy = "schedules__start_time"

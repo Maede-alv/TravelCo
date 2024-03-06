@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils.text import slugify
 
 
@@ -66,7 +66,8 @@ class TourSchedule(models.Model):
 class Booking(models.Model):
     tour = models.ForeignKey(Tour, related_name="bookings",
                              on_delete=models.PROTECT)
-    user = models.ForeignKey(User, related_name="bookings",
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             related_name="bookings",
                              on_delete=models.PROTECT)
     adults = models.PositiveIntegerField(default=1)
     children = models.PositiveIntegerField(default=0)
