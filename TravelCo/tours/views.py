@@ -7,7 +7,7 @@ from .forms import BookingForm
 
 def list(request):
     tours = Tour.objects.all()
-    return render(request, "tour/list.html", {"tours": tours})
+    return render(request, "list.html", {"tours": tours})
 
 
 def detail(request, tour_id):
@@ -35,5 +35,5 @@ def detail(request, tour_id):
             return redirect("account:login")
     else:
         booking_form = BookingForm(tour=tour)
-    return render(request, "tour/detail.html",
+    return render(request, "detail.html",
                   {"tour": tour, "form": booking_form})

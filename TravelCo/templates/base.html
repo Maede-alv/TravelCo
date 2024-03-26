@@ -10,18 +10,18 @@
 <body>
     <nav class="navbar">
         <div class="navbar__brand">
-            <a class="navbar__link" href="{% url 'tour:list' %}">TravelCo</a>
+            <a class="navbar__link" href="{% url 'tours:list' %}">TravelCo</a>
         </div>
         <div class="navbar__links">
                 {% if request.user.is_authenticated %}
-                        <a class="navbar__link" href="{% url 'account:profile' %}">Profile</a>
-                        <form method="post" action="{% url 'account:logout' %}">
+                        <a class="navbar__link" href="#">Profile</a>
+                        <form method="post" action="#">
                             {% csrf_token %}
                             <button class="navbar__button">Logout</button>
                         </form>
                 {% else %}
-                    <a class="navbar__link" href="{% url 'account:register' %}">Register</a>
-                    <a class="navbar__link" href="{% url 'account:login' %}">Login</a>
+                    <a class="navbar__link" href="#">Register</a>
+                    <a class="navbar__link" href="#">Login</a>
                 {% endif %}
         </div>
     </nav>
